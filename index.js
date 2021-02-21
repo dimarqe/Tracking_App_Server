@@ -20,7 +20,7 @@ webSocketServer.on('connection', (ws) => {
     ws.on('message', function incoming(message) {
         console.log('received: '+message);
         webSocketServer.clients.forEach(function each(client) {
-            if (client.readyState === WebSocket.OPEN) {
+            if (client.readyState === webSocket.OPEN) {
               client.send(message);
             }
         });
