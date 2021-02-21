@@ -19,9 +19,14 @@ webSocketServer.on('connection', (ws) => {
 
     ws.on('message', function incoming(message) {
         console.log('received: '+message);
+        webSocketServer.clients.forEach(function each(client) {
+            if (client.readyState === WebSocket.OPEN) {
+              client.send(message);
+            }
+        });
     });
 
-    ws.send('something');
+    ws.send('Connected');
 });
 
 //start our server
